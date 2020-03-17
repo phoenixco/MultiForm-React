@@ -69,12 +69,12 @@ class EventTabs extends React.Component<any, any> {
     loadData = async () => {
 
         const id = this.getURLIdParam();
-        const promiseArray = [`/Events/GetCountries`, `/Events/GetTimeZones`, `/Events/GetEventTypes`, `/Events/GetScheduleItemTypes`, `/Events/GeteventContacts`, `/Events/GetCompetitionTypes`]
+        const promiseArray = [`/GetCountries`, `/GetTimeZones`, `/GetEventTypes`, `/GetScheduleItemTypes`, `/GeteventContacts`, `/GetCompetitionTypes`]
             .map(this.fetchLookupData);
 
         promiseArray.unshift(
             axios.get(
-                `/Events/GetEvent`, {
+                `/Data`, {
                 params: {
                     id: id
                 }
@@ -126,7 +126,7 @@ class EventTabs extends React.Component<any, any> {
     postDataHandler = (values) => {
         const event = values;
 
-        axios.post('/Events/Edit', event, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        axios.post('Edit', event, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
             .then(response => {
                 console.log(response);
                 //todo: redirect url                
